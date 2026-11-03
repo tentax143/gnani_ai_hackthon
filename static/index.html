@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Likhit</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233a35c9'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E0%A4%B2%E0%A4%BF%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600&display=swap">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body data-state="idle">
+  <!-- ============ invigilator setup ============ -->
+  <main id="setup" class="setup" aria-labelledby="setup-title">
+    <header class="brand">
+      <div class="logo" aria-hidden="true">लि</div>
+      <div>
+        <h1 id="setup-title">Likhit <span lang="hi">लिखित</span></h1>
+        <p class="tagline">A voice exam scribe. The student hears the questions and writes and edits every answer
+          by voice.</p>
+      </div>
+    </header>
+
+    <ol class="steps">
+      <li class="card">
+        <h2><span class="step">1</span> Student</h2>
+        <label for="student">Name or roll number</label>
+        <input id="student" autocomplete="off" maxlength="80" placeholder="e.g. Roll 1042">
+      </li>
+
+      <li class="card">
+        <h2 id="paper-label"><span class="step">2</span> Paper</h2>
+        <div id="papers" class="papers" role="radiogroup" aria-labelledby="paper-label"></div>
+      </li>
+
+      <li class="card">
+        <h2><span class="step">3</span> Check audio</h2>
+        <div class="checks">
+          <div class="check">
+            <button id="test-mic" type="button" class="secondary">Test microphone</button>
+            <div class="meter" aria-hidden="true"><div id="mic-meter"></div></div>
+            <p id="mic-status" class="hint">Ask the student to say something.</p>
+          </div>
+          <div class="check">
+            <button id="test-speaker" type="button" class="secondary">Test speaker</button>
+            <p id="speaker-status" class="hint">Plays a short greeting in the paper's language.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <button id="start" type="button" class="primary big">Start exam</button>
+    <p id="setup-error" class="error" role="alert"></p>
+
+    <footer class="credits">Speech by Gnani <b>Prisma v3.0</b> · Voice by Gnani <b>Timbre v3.0</b> ·
+      All papers are synthetic</footer>
+  </main>
+
+  <!-- ============ exam ============ -->
+  <main id="exam" class="exam" hidden>
+    <header class="topbar">
+      <div class="brand-sm"><span class="logo sm" aria-hidden="true">लि</span> Likhit</div>
+      <div id="paper-title" class="paper-title"></div>
+      <div id="timer" class="timer" role="timer" aria-label="time left">--:--</div>
+    </header>
+
+    <nav id="progress" class="progress" aria-label="questions"></nav>
+
+    <section class="card question-card" aria-labelledby="q-meta">
+      <p id="q-meta" class="q-meta"></p>
+      <p id="q-text" class="q-text"></p>
+    </section>
+
+    <section class="card answer-card" aria-label="answer">
+      <div class="answer-head">
+        <h2>Answer</h2>
+        <span id="line-count" class="muted"></span>
+      </div>
+      <ol id="lines" class="lines"></ol>
+      <p id="empty" class="empty">Hold <kbd>Space</kbd> and speak to start writing.</p>
+    </section>
+
+    <section class="tips" aria-label="example commands">
+      <span class="tip">“तीसरी लाइन में काम को नाम करो”</span>
+      <span class="tip">“आखिरी लाइन हटाओ”</span>
+      <span class="tip">“पढ़ के सुनाओ”</span>
+      <span class="tip">“replace cat with bat in line 2”</span>
+      <span class="tip">“अगला प्रश्न”</span>
+      <span class="tip">“उत्तर जमा करो”</span>
+    </section>
+
+    <details class="keys">
+      <summary>Keyboard</summary>
+      <dl>
+        <div><dt><kbd>Space</kbd> hold</dt><dd>Dictate answer</dd></div>
+        <div><dt><kbd>C</kbd> hold</dt><dd>Speak a command</dd></div>
+        <div><dt><kbd>R</kbd></dt><dd>Read answer</dd></div>
+        <div><dt><kbd>Q</kbd></dt><dd>Repeat question</dd></div>
+        <div><dt><kbd>N</kbd> / <kbd>P</kbd></dt><dd>Next / previous</dd></div>
+        <div><dt><kbd>U</kbd></dt><dd>Undo</dd></div>
+        <div><dt><kbd>T</kbd></dt><dd>Time left</dd></div>
+        <div><dt><kbd>H</kbd></dt><dd>Help</dd></div>
+        <div><dt><kbd>+</kbd> / <kbd>−</kbd></dt><dd>Speech speed</dd></div>
+        <div><dt><kbd>Esc</kbd></dt><dd>Stop speaking</dd></div>
+      </dl>
+    </details>
+
+    <!-- bottom dock: state, captions, hold-to-talk -->
+    <div class="dock">
+      <div class="orb" aria-hidden="true"><div class="ring"></div><div class="core"></div></div>
+      <div class="captions">
+        <p id="state-label" class="state-label">Ready</p>
+        <p class="cap says"><span class="who">Likhit</span> <span id="cap-says"></span></p>
+        <p class="cap heard"><span class="who">Heard</span> <span id="cap-heard"></span></p>
+      </div>
+      <div class="holds">
+        <button id="hold-answer" type="button" class="hold primary" aria-pressed="false">
+          Hold to answer <kbd>Space</kbd></button>
+        <button id="hold-command" type="button" class="hold secondary" aria-pressed="false">
+          Hold for command <kbd>C</kbd></button>
+      </div>
+    </div>
+    <div id="live" class="sr-only" aria-live="polite"></div>
+  </main>
+
+  <!-- ============ submitted ============ -->
+  <main id="done" class="done-screen" hidden>
+    <div class="card done-card">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h1>Answers submitted</h1>
+      <p id="done-summary"></p>
+      <a id="sheet-link" class="primary big" target="_blank" rel="noopener">Open answer sheet</a>
+      <p class="hash">Audit log SHA-256<br><code id="done-hash"></code></p>
+    </div>
+  </main>
+
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

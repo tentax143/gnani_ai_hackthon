@@ -1,0 +1,32 @@
+{
+  "title": "कक्षा दस, विज्ञान, अभ्यास प्रश्नपत्र (काल्पनिक)",
+  "language": "hi-IN",
+  "stt_languages": "hi-IN,en-IN",
+  "minutes": 30,
+  "questions": [
+    {
+      "text": "प्रकाश संश्लेषण क्या है? इसके लिए आवश्यक दो चीज़ें लिखिए।",
+      "marks": 2,
+      "topic": "Class 10 biology: photosynthesis, chlorophyll, sunlight, carbon dioxide, glucose",
+      "keyterms": ["प्रकाश संश्लेषण", "क्लोरोफिल", "कार्बन डाइऑक्साइड", "ग्लूकोज", "photosynthesis", "chlorophyll"]
+    },
+    {
+      "text": "ओम का नियम लिखिए और इसका सूत्र बताइए।",
+      "marks": 2,
+      "topic": "Class 10 physics: Ohm's law, voltage, current, resistance, V equals I R",
+      "keyterms": ["ओम", "विभवांतर", "धारा", "प्रतिरोध", "वोल्टेज", "Ohm"]
+    },
+    {
+      "text": "अम्ल और क्षार में दो अंतर लिखिए। एक-एक उदाहरण भी दीजिए।",
+      "marks": 3,
+      "topic": "Class 10 chemistry: acids and bases, litmus, pH, hydrochloric acid, sodium hydroxide",
+      "keyterms": ["अम्ल", "क्षार", "लिटमस", "हाइड्रोक्लोरिक अम्ल", "सोडियम हाइड्रॉक्साइड", "pH"]
+    },
+    {
+      "text": "जल संरक्षण क्यों आवश्यक है? अपने गाँव या शहर के लिए दो उपाय सुझाइए।",
+      "marks": 3,
+      "topic": "Environment: water conservation, rainwater harvesting, groundwater",
+      "keyterms": ["जल संरक्षण", "वर्षा जल संचयन", "भूजल"]
+    }
+  ]
+}

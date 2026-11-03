@@ -1,0 +1,26 @@
+{
+  "title": "Class 10 English and General Knowledge practice paper (fictional)",
+  "language": "en-IN",
+  "stt_languages": "en-IN,hi-IN",
+  "minutes": 30,
+  "questions": [
+    {
+      "text": "Write a short paragraph about your favourite festival and why you like it.",
+      "marks": 3,
+      "topic": "Indian festivals: Diwali, Eid, Pongal, Onam, Durga Puja, Christmas",
+      "keyterms": ["Diwali", "Eid", "Pongal", "Onam", "Durga Puja", "rangoli"]
+    },
+    {
+      "text": "What is the difference between weather and climate? Give one example.",
+      "marks": 2,
+      "topic": "Geography: weather, climate, monsoon, temperature, rainfall",
+      "keyterms": ["monsoon", "climate", "weather", "humidity"]
+    },
+    {
+      "text": "Name any two fundamental rights given by the Constitution of India.",
+      "marks": 2,
+      "topic": "Civics: Constitution of India, fundamental rights, equality, freedom",
+      "keyterms": ["Constitution", "fundamental rights", "Right to Equality", "Right to Freedom"]
+    }
+  ]
+}

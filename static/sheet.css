@@ -1,0 +1,11 @@
+body {
+  max-width: 800px; margin: 32px auto; padding: 0 16px; background: #fff; color: #000;
+  font: 17px/1.7 "Noto Sans", "Noto Sans Devanagari", "Noto Sans Tamil", system-ui, sans-serif;
+}
+header { border-bottom: 2px solid #000; margin-bottom: 24px; }
+h1 { font-size: 1.4rem; margin: 0; }
+h2 { font-size: 1.05rem; margin: 24px 0 4px; }
+h2 small { font-weight: 400; }
+ol { margin: 0; }
+.empty { list-style: none; color: #888; }
+footer { margin-top: 40px; border-top: 1px solid #999; font-size: .8rem; color: #444; word-break: break-all; }
